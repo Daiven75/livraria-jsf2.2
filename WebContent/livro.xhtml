@@ -6,6 +6,12 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="_template.xhtml">
+	
+	<f:metadata>
+		<f:viewParam name="livroId" value="#{livroBean.livroId}"/>
+		<f:viewAction action="#{livroBean.carregaLivroPeloId}" if="#{params['livroId'] != null}" />
+	</f:metadata>
+	
 	<ui:define name="titulo">
 			Novo Livro
 		</ui:define>
@@ -13,6 +19,8 @@
 	<ui:define name="conteudo">
 
 		<h:form>
+			
+			<h:outputText value="#{sessionScope['usuarioLogado'].email}" />
 			<h:messages id="messages" />
 
 			<fieldset>

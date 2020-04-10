@@ -9,6 +9,10 @@
 		<body>
 			<div id="cabecalho">
 				<h:graphicImage library="img" name="logo.png"/>
+				
+				<h:form>
+					<h:commandButton value="Sair" action="#{usuarioBean.deslogar}" />
+				</h:form>
 				<h1><ui:insert name="titulo"></ui:insert></h1>
 			</div>
 			

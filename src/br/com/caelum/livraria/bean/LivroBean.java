@@ -23,6 +23,8 @@ public class LivroBean implements Serializable {
 	private Livro livro = new Livro();
 
 	private Integer autorId;
+	
+	private Integer livroId;
 
 	public void setAutorId(Integer autorId) {
 		this.autorId = autorId;
@@ -30,6 +32,14 @@ public class LivroBean implements Serializable {
 
 	public Integer getAutorId() {
 		return autorId;
+	}
+	
+	public Integer getLivroId() {
+		return livroId;
+	}
+	
+	public void setLivroId(Integer livroId) {
+		this.livroId = livroId;
 	}
 
 	public Livro getLivro() {
@@ -70,6 +80,10 @@ public class LivroBean implements Serializable {
 		}
 
 		this.livro = new Livro();
+	}
+	
+	public void carregaLivroPeloId() {
+		this.livro = new DAO<Livro>(Livro.class).buscaPorId(this.livroId);
 	}
 	
 	public void remover(Livro livro) {
