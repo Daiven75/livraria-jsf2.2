@@ -5,13 +5,15 @@
 		xmlns:f="http://xmlns.jcp.org/jsf/core"
 		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 		
-		<head />
+		<h:head> </h:head>
 		<body>
 			<div id="cabecalho">
 				<h:graphicImage library="img" name="logo.png"/>
 				
-				<h:form>
+				<h:form rendered="#{usuarioLogado != null}">
 					<h:commandButton value="Sair" action="#{usuarioBean.deslogar}" />
+					<br/><br/>
+					<h:outputText value="Seja bem-vindo #{sessionScope['usuarioLogado'].email}"/>
 				</h:form>
 				<h1><ui:insert name="titulo"></ui:insert></h1>
 			</div>
