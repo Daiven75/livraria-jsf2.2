@@ -25,6 +25,7 @@ public class Livro implements Serializable {
 	private String titulo;
 	private String isbn;
 	private double preco;
+	private String genero;
 
 	@Temporal(TemporalType.DATE)
 	private Calendar dataLancamento = Calendar.getInstance();
@@ -81,6 +82,14 @@ public class Livro implements Serializable {
 
 	public void setDataLancamento(Calendar dataLancamento) {
 		this.dataLancamento = dataLancamento;
+	}
+	
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+	
+	public String getGenero() {
+		return genero;
 	}
 
 	public void removeAutor(Autor autor) {

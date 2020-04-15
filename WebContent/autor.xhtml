@@ -55,9 +55,9 @@
 			        </f:facet>
 			        #{autor.nome} - #{autor.email}
 			    
-			    <p:commandButton value="altera" action="#{autorBean.carrega(autor)}" style="margin:5px;" update=":autor"/>
+			    <p:commandButton value="altera" icon="fa fa-fw fa-edit" action="#{autorBean.carrega(autor)}" update=":autor"/>
 				
-				<p:commandButton value="remove" action="#{autorBean.remove(autor)}" update="@form"/>
+				<p:commandButton value="remove" icon="fa fa-fw fa-remove" action="#{autorBean.remove(autor)}" update="@form"/>
 				
 			    </p:dataList>
 			</h:form>

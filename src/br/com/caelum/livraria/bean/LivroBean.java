@@ -1,6 +1,7 @@
 package br.com.caelum.livraria.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -26,6 +27,17 @@ public class LivroBean implements Serializable {
 	
 	private Integer livroId;
 
+	private List<Livro> livros;
+	
+	private List<String> generos = Arrays.asList("Romance", 
+			                                     "Drama",
+			                                     "Ação", 
+			                                     "Terror", 
+			                                     "Ficção Científica", 
+			                                     "Comédia",
+			                                     "Animação",
+			                                     "Musical");
+
 	public void setAutorId(Integer autorId) {
 		this.autorId = autorId;
 	}
@@ -45,9 +57,17 @@ public class LivroBean implements Serializable {
 	public Livro getLivro() {
 		return livro;
 	}
+	
+	public List<String> getGeneros() {
+		return generos;
+	}
 
 	public List<Livro> getLivros() {
-		return new DAO<Livro>(Livro.class).listaTodos();
+		DAO<Livro> dao = new DAO<Livro>(Livro.class);
+		if(this.livros == null) {
+			this.livros = dao.listaTodos();
+		}
+		return livros;
 	}
 
 	public List<Autor> getAutores() {
@@ -73,10 +93,12 @@ public class LivroBean implements Serializable {
 			return;
 		}
 		
+		DAO<Livro> dao = new DAO<Livro>(Livro.class);
 		if(this.livro.getId() == null) {
-			new DAO<Livro>(Livro.class).adiciona(this.livro);
+			dao.adiciona(this.livro);
+			this.livros = dao.listaTodos();
 		} else {
-			new DAO<Livro>(Livro.class).atualiza(this.livro);			
+			dao.atualiza(this.livro);			
 		}
 
 		this.livro = new Livro();
