@@ -39,6 +39,7 @@ public class UsuarioBean implements Serializable {
 	
 	public String deslogar() {
 		
+		System.out.println("deslogando usuario...");
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().remove("usuarioLogado");
 		return "login?faces-redirect=true";

@@ -29,8 +29,18 @@
 			        <p:menuitem value="Livros" action="livro" icon="fa fa-fw fa-edit"/>
 			        <p:menuitem value="Autores" action="autor" icon="fa fa-fw fa-edit"/>
 			        <p:separator />
-			        <p:menuitem value="Sair" action="#{usuarioBean.deslogar}" icon="fa fa-fw fa-sign-out"/>
+			        <p:menuitem value="Sair" icon="fa fa-fw fa-sign-out">
+			        	<p:confirm header="Confirmação" message="Deseja realmente Sair?" icon="pi pi-exclamation-triangle" />
+			        </p:menuitem>
 			    </p:menuButton>
+			     
+			    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			        <p:commandButton value="Sim" action="#{usuarioBean.deslogar}" immediate="true" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+			        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			    </p:confirmDialog>  
+			    
+			     <p:growl id="message" showDetail="true" />
+    
 			</h:form>
 				
 				<h1><ui:insert name="titulo"></ui:insert></h1>
