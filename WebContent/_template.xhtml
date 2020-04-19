@@ -26,8 +26,9 @@
 				<h:form rendered="#{usuarioLogado != null}">
 			 
 			    <p:menuButton value="Menu">
-			        <p:menuitem value="Livros" action="livro" icon="fa fa-fw fa-edit"/>
-			        <p:menuitem value="Autores" action="autor" icon="fa fa-fw fa-edit"/>
+			        <p:menuitem value="Livros" action="livro?faces-redirect=true" icon="fa fa-fw fa-edit"/>
+			        <p:menuitem value="Autores" action="autor?faces-redirect=true" icon="fa fa-fw fa-edit"/>
+			        <p:menuitem value="Vendas" action="vendas?faces-redirect=true" icon="fa fa-fw fa-image"/>
 			        <p:separator />
 			        <p:menuitem value="Sair" icon="fa fa-fw fa-sign-out">
 			        	<p:confirm header="Confirmação" message="Deseja realmente Sair?" icon="pi pi-exclamation-triangle" />
