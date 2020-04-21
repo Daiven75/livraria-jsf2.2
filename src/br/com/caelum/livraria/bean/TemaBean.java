@@ -1,11 +1,15 @@
 package br.com.caelum.livraria.bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
-@ManagedBean
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+
+@Named
 @SessionScoped
-public class TemaBean {
+public class TemaBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String tema = "cupertino";
 	
