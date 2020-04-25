@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.RollbackException;
 
 import br.com.caelum.livraria.dao.AutorDao;
-import br.com.caelum.livraria.dao.DAO;
 import br.com.caelum.livraria.modelo.Autor;
+import br.com.caelum.livraria.tx.Transacional;
 
 @Named
 @ViewScoped
@@ -47,6 +47,7 @@ public class AutorBean implements Serializable {
 		return this.dao.listaTodos();
 	}
 
+	@Transacional
 	public String gravar() {
 		System.out.println("Gravando autor " + this.autor.getNome());
 		
@@ -66,6 +67,7 @@ public class AutorBean implements Serializable {
 		this.autor = autor;
 	}
 	
+	@Transacional
 	public void remove(Autor autor) {
 		try {
 			this.dao.remove(autor);
