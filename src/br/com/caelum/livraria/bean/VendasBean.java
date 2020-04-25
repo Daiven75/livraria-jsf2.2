@@ -1,9 +1,7 @@
 package br.com.caelum.livraria.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -14,8 +12,8 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
-import br.com.caelum.livraria.dao.LivroDao;
-import br.com.caelum.livraria.modelo.Livro;
+import br.com.caelum.livraria.dao.VendasDao;
+import br.com.caelum.livraria.modelo.Vendas;
 
 @Named
 @ViewScoped
@@ -24,7 +22,7 @@ public class VendasBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private LivroDao livroDao;
+	private VendasDao vendasDao;
 
 	public BarChartModel getVendasModel() {
 		
@@ -33,21 +31,12 @@ public class VendasBean implements Serializable {
 	     ChartSeries vendaSerie2020 = new ChartSeries();
 	     vendaSerie2020.setLabel("Vendas 2020");
 	     
-	     List<Venda> vendas = getVendas(1234); 
+	     List<Vendas> vendas = getVendas(); 
 	     
-	     for(Venda venda : vendas) {
+	     for(Vendas venda : vendas) {
 	       	vendaSerie2020.set(venda.getLivro().getTitulo(), venda.getQuantidade());
 	     }
 	     
-	     ChartSeries vendaSerie2019 = new ChartSeries();
-	     vendaSerie2019.setLabel("Vendas 2019");
-	     
-	     vendas = getVendas(4321);
-	     for(Venda venda : vendas) {
-	    	vendaSerie2019.set(venda.getLivro().getTitulo(), venda.getQuantidade());
-	     }
-	 
-	     model.addSeries(vendaSerie2019);
 	     model.addSeries(vendaSerie2020);
 	     
 	     model.setTitle("Vendas");
@@ -62,17 +51,8 @@ public class VendasBean implements Serializable {
 	     return model;
 	}
 	
-	public List<Venda> getVendas(long seed) {
-
-		List<Livro> livros = this.livroDao.listaTodos();
-		List<Venda> vendas = new ArrayList<Venda>();
-		
-		Random random = new Random(seed);
-		for(Livro livro : livros) {
-			Integer quantidade = random.nextInt(500);
-			vendas.add(new Venda(livro, quantidade));
-		}
-		
+	public List<Vendas> getVendas() {
+		List<Vendas> vendas = this.vendasDao.listaTodos();
 		return vendas;
 	}
 }
