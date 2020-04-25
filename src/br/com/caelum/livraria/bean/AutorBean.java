@@ -12,6 +12,7 @@ import javax.persistence.RollbackException;
 
 import br.com.caelum.livraria.dao.AutorDao;
 import br.com.caelum.livraria.modelo.Autor;
+import br.com.caelum.livraria.tx.Log;
 import br.com.caelum.livraria.tx.Transacional;
 
 @Named
@@ -47,6 +48,7 @@ public class AutorBean implements Serializable {
 		return this.dao.listaTodos();
 	}
 
+	@Log
 	@Transacional
 	public String gravar() {
 		System.out.println("Gravando autor " + this.autor.getNome());
@@ -67,6 +69,7 @@ public class AutorBean implements Serializable {
 		this.autor = autor;
 	}
 	
+	@Log
 	@Transacional
 	public void remove(Autor autor) {
 		try {

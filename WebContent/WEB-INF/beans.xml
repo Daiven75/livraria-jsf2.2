@@ -1,5 +1,6 @@
 <beans>
 	<interceptors>
 		<class>br.com.caelum.livraria.tx.GerenciadorDeTransacao</class>
+		<class>br.com.caelum.livraria.tx.GerenciadorDeLog</class>
 	</interceptors>
 </beans>
