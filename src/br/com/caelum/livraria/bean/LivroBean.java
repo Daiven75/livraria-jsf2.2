@@ -127,7 +127,7 @@ public class LivroBean implements Serializable {
 	
 	public void carrega(Livro livro) {
 		System.out.println("alterando dados...");
-		this.livro = livro;
+		this.livro = this.livroDao.buscaPorId(livro.getId());
 	}
 	
 	public void removeAutorDoLivro(Autor autor) {
